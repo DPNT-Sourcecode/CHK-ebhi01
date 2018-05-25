@@ -8,4 +8,3 @@ config/credentials.config
 out
 target
 *.iml
-/bin/
