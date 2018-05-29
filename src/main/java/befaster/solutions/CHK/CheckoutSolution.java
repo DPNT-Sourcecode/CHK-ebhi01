@@ -103,6 +103,34 @@ public class CheckoutSolution {
 	}
 	
 	/**
+	 * Gets the single deal price reduction.
+	 * 
+	 * @param product - the product key, "A", "B", etc ...
+	 * @param unitCount - the unit count for the deal.
+	 * @param dealPrice - the unit count price for the deal.
+	 * @return the price reduction.
+	 */
+	final int singleDeal(final String product, final int unitCount, final int dealPrice)
+	{
+		int priceReduction = 0;
+		
+		if (this.products.containsKey(product) && this.productCount.containsKey(product))
+		{
+			int unitPrice = this.products.get(product).intValue();
+			int discount = (unitCount * unitPrice) - dealPrice; // calculate the discount
+			
+			int count = this.productCount.get(product).intValue();
+		
+			int deals = count / unitCount;
+			
+			priceReduction = (deals * discount);
+		}
+		
+		return priceReduction;
+		
+	}
+	
+	/**
 	 * Gets the multi deal price reduction.
 	 * 
 	 * @param product - the product key, "A", "B", etc ...
