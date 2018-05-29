@@ -1,5 +1,6 @@
 package befaster.solutions.CHK;
 
+import java.util.Collections;
 import java.util.HashMap;
 
 public class CheckoutSolution {
@@ -84,6 +85,8 @@ public class CheckoutSolution {
 				int nmReduction = this.compoundDeal("M", 1, 15, "N", 3);
 				int qrReduction = this.compoundDeal("Q", 3, 80, "R", 3);
 				
+				int buyAnyX = this.buyAny3("STXYZ", 45);
+				
 				// update value by removing the discounts for the deals.
 				value = value
 						- aReduction				// A multi deal
@@ -95,7 +98,8 @@ public class CheckoutSolution {
 						- uReduction				// U bogof type deal
 						- beReduction   			// apply b & e discount.
 						- nmReduction   			// apply n & m discount.
-						- qrReduction;   			// apply q & r discount.
+						- qrReduction   			// apply q & r discount.
+						- buyAnyX;			   		// apply q & r discount.
 			}
 		}
 		return value;
@@ -221,19 +225,17 @@ public class CheckoutSolution {
 		
 	}	
 	
-	/**
-	 * 
-	 * @param p1
-	 * @param p1UnitCount
-	 * @param p1DealPrice
-	 * @param p2
-	 * @param p2UnitCount
-	 * @return
-	 */
-	final int buyAny3(final String p1, final int p1UnitCount, final int p1DealPrice,
-			final String p2, final int p2UnitCount)
+	final int buyAny3(final String validItems)
 	{
+		// need to find the items in cost order, high to low, since the deals always run in the customer's favour.
+
+		String[] tokens = validItems.split("(?!^)"); // split into individual characters.
+
+		// check each string token
+		for (String str : tokens)
+		{
 		
+		}
 	}
-	}
+	
 }
