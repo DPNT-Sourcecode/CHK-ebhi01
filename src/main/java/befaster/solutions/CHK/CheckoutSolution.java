@@ -51,7 +51,7 @@ public class CheckoutSolution {
 				int a5Deals = aCount / 5;
 				int a3Deals = (aCount % 5) / 3;
 				int eDeals = eCount / 2;
-				int bDeals = (bCount - eDeals) / 2;
+				int bDeals = bCount > 0 ? (bCount - eDeals) / 2 : 0;
 
 				// update value by removing the discounts for the deals.
 				value = value
