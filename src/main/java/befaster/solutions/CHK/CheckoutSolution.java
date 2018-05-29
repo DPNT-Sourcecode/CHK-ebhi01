@@ -16,7 +16,27 @@ public class CheckoutSolution {
 			int d = 15;
 			int e = 40;
 			int f = 10;
-
+			int g = 20;
+			int h = 10;
+			int i = 35;
+			int j = 60;
+			int k = 80;
+			int l = 90;
+			int m = 15;
+			int n = 40;
+			int o = 10;
+			int p = 50;
+			int q = 30;
+			int r = 50;
+			int s = 30;
+			int t = 20;
+			int u = 40;
+			int v = 50;
+			int w = 20;
+			int x = 90;
+			int y = 10;
+			int z = 50;
+			
 			int aCount = 0;
 			int bCount = 0;
 			int eCount = 0;
