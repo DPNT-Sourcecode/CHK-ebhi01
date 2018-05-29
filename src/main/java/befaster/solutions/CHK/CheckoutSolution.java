@@ -71,39 +71,32 @@ public class CheckoutSolution {
 			if (value >= 0) // check for non-negative value, applying discounts if so.
 			{
 				int aReduction = this.multiDeal("A", 3, 130, 5, 200);
+				int hReduction = this.multiDeal("H", 5, 45, 10, 80);
+				int vReduction = this.multiDeal("V", 2, 90, 3, 130);
+				
 				int bCount = productCount.get("B").intValue();
 				int eCount = productCount.get("E").intValue();
 				int fCount = productCount.get("F").intValue();
-				int hCount = productCount.get("H").intValue();
 				
-				int a3Discount = 20; // (3 * 50) - 130.
-				int a5Discount = 50; // (5 * 50) - 200.
 				int bDiscount = 15; // (2 * 30) - 45
 				int eDiscount = 30; // one B.
 				int fDiscount = 10; // one F.
-				int h5Discount = 5; // (5 * 10) - 45.
-				int h10Discount = 20; // (10 * 10) - 80.
 				
 				// work out how many deals have been claimed.
-				int a5Deals = aCount / 5;
-				int a3Deals = (aCount % 5) / 3;
 				int eDealsPotential = eCount / 2;
 				int eDeals = (bCount >= eDealsPotential) ? eDealsPotential : 0;
-				int h10Deals = hCount / 10;
-				int h5Deals = (hCount % 10) / 5;
 
 				int bDeals = (bCount - eDeals) / 2;
 				int fDeals = (fCount) / 3;
 
 				// update value by removing the discounts for the deals.
 				value = value
-						- (a5Deals * a5Discount) 	// better A deal for customer.
-						- (a3Deals * a3Discount) 	// pick up any remaining 3 piece deals.
+						- aReduction				// A multi deal
+						- hReduction				// H multi deal
+						- vReduction				// V multi deal
 						- (bDeals * bDiscount)   	// apply b discount.
 						- (eDeals * eDiscount)   	// apply e discount.
-						- (fDeals * fDiscount)   	// apply f discount.
-						- (h10Deals * h10Discount) 	// better H deal for customer.
-						- (h5Deals * h5Discount);   	// pick up any remaining 5 piece deals.
+						- (fDeals * fDiscount);   	// apply f discount.
 			}
 		}
 		return value;
