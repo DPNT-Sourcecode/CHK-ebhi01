@@ -76,12 +76,12 @@ public class CheckoutSolution {
 				
 				int kReduction = this.singleDeal("K", 2, 150);
 				int pReduction = this.singleDeal("P", 5, 200);
-				int qReduction = this.singleDeal("Q", 3, 80);
 				
 				int fReduction = this.bogofTypeDeal("F", 2);
 				int nReduction = this.bogofTypeDeal("N", 3);
 				int uReduction = this.bogofTypeDeal("U", 3);
 				
+				// dependent deals
 				int bCount = this.productCount.get("B").intValue();
 				int eCount = this.productCount.get("E").intValue();
 				
@@ -93,6 +93,18 @@ public class CheckoutSolution {
 				int eDeals = (bCount >= eDealsPotential) ? eDealsPotential : 0;
 
 				int bDeals = (bCount - eDeals) / 2;
+				
+				int qCount = this.productCount.get("Q").intValue();
+				int rCount = this.productCount.get("R").intValue();
+				
+				int qDiscount = 10; // (3 * 30) - 80
+				int rDiscount = 30; // one Q.
+				
+				// work out how many deals have been claimed.
+				int rDealsPotential = rCount / 3;
+				int rDeals = (qCount >= rDealsPotential) ? rDealsPotential : 0;
+
+				int qDeals = (qCount - eDeals) / 3;
 
 				// update value by removing the discounts for the deals.
 				value = value
@@ -101,12 +113,13 @@ public class CheckoutSolution {
 						- vReduction				// V multi deal
 						- kReduction				// K single deal
 						- pReduction				// P single deal
-						- qReduction				// Q single deal
 						- fReduction				// F bogof type deal
 						- nReduction				// N bogof type deal
 						- uReduction				// U bogof type deal
 						- (bDeals * bDiscount)   	// apply b discount.
-						- (eDeals * eDiscount);   	// apply e discount.
+						- (eDeals * eDiscount)   	// apply e discount.
+						- (qDeals * qDiscount)   	// apply q discount.
+						- (rDeals * rDiscount);   	// apply r discount.
 			}
 		}
 		return value;
@@ -198,5 +211,6 @@ public class CheckoutSolution {
 		return priceReduction;
 		
 	}
+	
 	
 }
