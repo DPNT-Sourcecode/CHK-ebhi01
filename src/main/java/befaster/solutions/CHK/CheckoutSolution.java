@@ -84,18 +84,15 @@ public class CheckoutSolution {
 				
 				int bCount = this.productCount.get("B").intValue();
 				int eCount = this.productCount.get("E").intValue();
-				int fCount = this.productCount.get("F").intValue();
 				
 				int bDiscount = 15; // (2 * 30) - 45
 				int eDiscount = 30; // one B.
-				int fDiscount = 10; // one F.
 				
 				// work out how many deals have been claimed.
 				int eDealsPotential = eCount / 2;
 				int eDeals = (bCount >= eDealsPotential) ? eDealsPotential : 0;
 
 				int bDeals = (bCount - eDeals) / 2;
-				int fDeals = (fCount) / 3;
 
 				// update value by removing the discounts for the deals.
 				value = value
@@ -109,8 +106,7 @@ public class CheckoutSolution {
 						- nReduction				// N bogof type deal
 						- uReduction				// U bogof type deal
 						- (bDeals * bDiscount)   	// apply b discount.
-						- (eDeals * eDiscount)   	// apply e discount.
-						- (fDeals * fDiscount);   	// apply f discount.
+						- (eDeals * eDiscount);   	// apply e discount.
 			}
 		}
 		return value;
