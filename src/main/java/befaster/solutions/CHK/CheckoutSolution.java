@@ -80,8 +80,8 @@ public class CheckoutSolution {
 				int fReduction = this.bogofTypeDeal("F", 2);
 				int uReduction = this.bogofTypeDeal("U", 3);
 				
-				int beReduction = this.compoundDeal("B", 2, 45, "F", 2);
-				int nmReduction = this.compoundDeal("M", 1, 15, "N", 3);
+				int beReduction = this.compoundDeal("B", 2, 45, "E", 2);
+				int mnReduction = this.compoundDeal("M", 1, 15, "N", 3);
 				int qrReduction = this.compoundDeal("Q", 3, 80, "R", 3);
 				
 				// update value by removing the discounts for the deals.
@@ -94,7 +94,7 @@ public class CheckoutSolution {
 						- fReduction				// F bogof type deal
 						- uReduction				// U bogof type deal
 						- beReduction   			// apply b & e discount.
-						- nmReduction   			// apply n & m discount.
+						- mnReduction   			// apply m & n discount.
 						- qrReduction;   			// apply q & r discount.
 			}
 		}
@@ -200,7 +200,6 @@ public class CheckoutSolution {
 	final int compoundDeal(final String p1, final int p1UnitCount, final int p1DealPrice,
 			final String p2, final int p2UnitCount)
 	{
-		
 		int priceReduction = 0;
 
 		int p1Count = this.productCount.containsKey(p1) ? this.productCount.get(p1).intValue() : 0;
