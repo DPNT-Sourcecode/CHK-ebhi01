@@ -80,8 +80,8 @@ public class CheckoutSolution {
 				int fReduction = this.bogofTypeDeal("F", 2);
 				int uReduction = this.bogofTypeDeal("U", 3);
 				
-				int beReduction = this.compoundDeal("B", 2, 45, "E", 2);
-				int mnReduction = this.compoundDeal("M", 1, 15, "N", 3);
+				int beReduction = this.compoundDeal("B", 2, 45, "F", 2);
+				int nmReduction = this.compoundDeal("M", 1, 15, "N", 3);
 				int qrReduction = this.compoundDeal("Q", 3, 80, "R", 3);
 				
 				// update value by removing the discounts for the deals.
@@ -94,7 +94,7 @@ public class CheckoutSolution {
 						- fReduction				// F bogof type deal
 						- uReduction				// U bogof type deal
 						- beReduction   			// apply b & e discount.
-						- mnReduction   			// apply m & n discount.
+						- nmReduction   			// apply n & m discount.
 						- qrReduction;   			// apply q & r discount.
 			}
 		}
@@ -189,17 +189,18 @@ public class CheckoutSolution {
 	}
 	
 	/**
-	 * Calculates a compound deal reduction.
-	 * @param p1 - the product key, "A", "B", etc ...
-	 * @param p1UnitCount - the unit count for the deal.
-	 * @param p1DealPrice - the deal price.
-	 * @param p2 - the product key, "A", "B", etc ...
-	 * @param p2UnitCount - the unit count for the deal.
-	 * @return the price reduction.
+	 * 
+	 * @param p1
+	 * @param p1UnitCount
+	 * @param p1DealPrice
+	 * @param p2
+	 * @param p2UnitCount
+	 * @return
 	 */
 	final int compoundDeal(final String p1, final int p1UnitCount, final int p1DealPrice,
 			final String p2, final int p2UnitCount)
 	{
+		
 		int priceReduction = 0;
 
 		int p1Count = this.productCount.containsKey(p1) ? this.productCount.get(p1).intValue() : 0;
@@ -207,6 +208,7 @@ public class CheckoutSolution {
 		
 		int p1UnitPrice = this.products.get(p1).intValue();
 		int p1Discount = (p1UnitCount * p1UnitPrice) - p1DealPrice; // calculate the discount
+
 		int p2Discount = p1UnitPrice; // calculate the discount
 
 		// work out how many deals have been claimed.
