@@ -234,7 +234,7 @@ public class CheckoutSolution {
 		int p2DealsPotential = p2Count / p2UnitCount;
 		int p2Deals = (p1Count >= p2DealsPotential) ? p2DealsPotential : 0;
 
-		int p1Deals = (p1Count - p2Deals) / 2;
+		int p1Deals = (p1Count - p2Deals) / p2UnitCount;
 		
 		System.out.println("P1/2 deals : "  + p1Deals + " " + p2Deals);
 		
