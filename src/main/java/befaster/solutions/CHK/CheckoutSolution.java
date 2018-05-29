@@ -190,12 +190,12 @@ public class CheckoutSolution {
 	
 	/**
 	 * Calculates a compound deal reduction.
-	 * @param p1
-	 * @param p1UnitCount
-	 * @param p1DealPrice
-	 * @param p2
-	 * @param p2UnitCount
-	 * @return
+	 * @param p1 - the product key, "A", "B", etc ...
+	 * @param p1UnitCount - the unit count for the deal.
+	 * @param p1DealPrice - the deal price.
+	 * @param p2 - the product key, "A", "B", etc ...
+	 * @param p2UnitCount - the unit count for the deal.
+	 * @return the price reduction.
 	 */
 	final int compoundDeal(final String p1, final int p1UnitCount, final int p1DealPrice,
 			final String p2, final int p2UnitCount)
