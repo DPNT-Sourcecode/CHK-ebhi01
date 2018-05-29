@@ -75,6 +75,12 @@ public class CheckoutSolution {
 				int vReduction = this.multiDeal("V", 2, 90, 3, 130);
 				
 				int kReduction = this.singleDeal("K", 2, 150);
+				int pReduction = this.singleDeal("P", 5, 200);
+				int qReduction = this.singleDeal("Q", 3, 80);
+				
+				int fReduction = this.bogofTypeDeal("F", 2);
+				int nReduction = this.bogofTypeDeal("N", 3);
+				int uReduction = this.bogofTypeDeal("U", 3);
 				
 				int bCount = this.productCount.get("B").intValue();
 				int eCount = this.productCount.get("E").intValue();
@@ -97,6 +103,11 @@ public class CheckoutSolution {
 						- hReduction				// H multi deal
 						- vReduction				// V multi deal
 						- kReduction				// K single deal
+						- pReduction				// P single deal
+						- qReduction				// Q single deal
+						- fReduction				// F bogof type deal
+						- nReduction				// N bogof type deal
+						- uReduction				// U bogof type deal
 						- (bDeals * bDiscount)   	// apply b discount.
 						- (eDeals * eDiscount)   	// apply e discount.
 						- (fDeals * fDiscount);   	// apply f discount.
