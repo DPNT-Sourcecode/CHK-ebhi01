@@ -1,5 +1,7 @@
 package befaster.solutions.CHK;
 
+import java.util.HashMap;
+
 public class CheckoutSolution {
 	public Integer checkout(String skus) {
 
@@ -9,34 +11,36 @@ public class CheckoutSolution {
 		{
 			String[] tokens = skus.split("(?!^)");
 
+			final HashMap<String, Integer> products = new HashMap<String, Integer>(0);
 			// sku prices
-			int a = 50;
-			int b = 30;
-			int c = 20;
-			int d = 15;
-			int e = 40;
-			int f = 10;
-			int g = 20;
-			int h = 10;
-			int i = 35;
-			int j = 60;
-			int k = 80;
-			int l = 90;
-			int m = 15;
-			int n = 40;
-			int o = 10;
-			int p = 50;
-			int q = 30;
-			int r = 50;
-			int s = 30;
-			int t = 20;
-			int u = 40;
-			int v = 50;
-			int w = 20;
-			int x = 90;
-			int y = 10;
-			int z = 50;
+			products.put("A", 50);
+			products.put("B", 30);
+			products.put("C", 20);
+			products.put("D", 15);
+			products.put("E", 40);
+			products.put("F", 10);
+			products.put("G", 20);
+			products.put("H", 10);
+			products.put("I", 35);
+			products.put("J", 60);
+			products.put("K", 80);
+			products.put("L", 90);
+			products.put("M", 15);
+			products.put("N", 40);
+			products.put("O", 10);
+			products.put("P", 50);
+			products.put("Q", 30);
+			products.put("R", 50);
+			products.put("S", 30);
+			products.put("T", 20);
+			products.put("U", 40);
+			products.put("V", 50);
+			products.put("W", 20);
+			products.put("X", 90);
+			products.put("Y", 10);
+			products.put("Z", 50);
 			
+			final HashMap<String, Integer> productCount = new HashMap<String, Integer>(0);
 			int aCount = 0;
 			int bCount = 0;
 			int eCount = 0;
@@ -48,23 +52,31 @@ public class CheckoutSolution {
 			int fDiscount = 10; // one F.
 
 			// check each string token
-			for (String str : tokens) {
-				if (str.equals("A")) {
-					value += a;
-					aCount++;
-				} else if (str.equals("B")) {
-					value += b;
-					bCount++;
-				} else if (str.equals("C")) {
-					value += c;
-				} else if (str.equals("D")) {
-					value += d;
-				} else if (str.equals("E")) {
-					value += e;
-					eCount++;
-				} else if (str.equals("F")) {
-					value += f;
-					fCount++;
+			for (String str : tokens)
+			{
+				if (products.containsKey(str))
+				{
+					value += products.get(str).intValue();
+					if (productCount.containsKey(str))
+					{
+						productCount.get(str).intValue();
+					}
+//				if (str.equals("A")) {
+//					value += a;
+//					aCount++;
+//				} else if (str.equals("B")) {
+//					value += b;
+//					bCount++;
+//				} else if (str.equals("C")) {
+//					value += c;
+//				} else if (str.equals("D")) {
+//					value += d;
+//				} else if (str.equals("E")) {
+//					value += e;
+//					eCount++;
+//				} else if (str.equals("F")) {
+//					value += f;
+//					fCount++;
 				} else {
 					value = -1; // erroneous input, drop out of loop and method with -1.
 					break;
