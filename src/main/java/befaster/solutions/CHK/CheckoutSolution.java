@@ -16,11 +16,13 @@ public class CheckoutSolution {
 			int b = 30;
 			int c = 20;
 			int d = 15;
+			int e = 40;
 
 			int aCount = 0;
 			int bCount = 0;
 			int eCount = 0;
 			int a3Discount = 20; // (3 * 50) - 130.
+			int a5Discount = 50; // (5 * 50) - 200.
 			int bDiscount = 15; // (2 * 30) - 45
 
 			// check each string token
@@ -37,6 +39,7 @@ public class CheckoutSolution {
 					value += d;
 				} else if (str.equals("E")) {
 					value += e;
+					eCount++;
 				} else {
 					value = -1; // erroneous input, drop out of loop and method with -1.
 					break;
@@ -46,11 +49,12 @@ public class CheckoutSolution {
 			if (value >= 0) // check for non-negative value, applying discounts if so.
 			{
 				// work out how many deals have been claimed.
-				int aDeals = aCount / 3;
+				int a3Deals = aCount / 3;
+				int a5Deals = aCount / 5;
 				int bDeals = bCount / 2;
 
 				// update value by removing the discounts for the deals.
-				value = value - (aDeals * a3Discount) - (bDeals * bDiscount);
+				value = value - (a3Deals * a3Discount) - (bDeals * bDiscount);
 			}
 		}
 		return value;
