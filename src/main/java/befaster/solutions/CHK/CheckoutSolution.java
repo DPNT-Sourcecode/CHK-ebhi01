@@ -5,9 +5,9 @@ import befaster.runner.SolutionNotImplementedException;
 public class CheckoutSolution {
     public Integer checkout(String skus) {
         
-    	// assumes a comma-delimited string input.
+    	// assumes a basic string input.
     	int value = 0;
-    	String[] tokens = skus.split(",");
+    	String[] tokens = skus.split("?!^)");
     	
     	// sku prices
     	int a = 50;
@@ -41,15 +41,22 @@ public class CheckoutSolution {
     		{
     			value += d;
     		}
+    		else
+    		{
+    			value = -1; // erroneous input, drop out of loop and method with -1.
+    			break;
+    		}
     	}
     	
-    	// work out how many deals have been claimed.
-    	int aDeals = aCount % 3;
-    	int bDeals = aCount % 2;
-    	
-    	// update value by removing the discounts for the deals.
-    	value = value - (aDeals * aDiscount) - (bDeals * bDiscount);
-    	
+    	if (value >= 0) // check for non-negative value, applying discounts if so.
+    	{
+	    	// work out how many deals have been claimed.
+	    	int aDeals = aCount % 3;
+	    	int bDeals = aCount % 2;
+	    	
+	    	// update value by removing the discounts for the deals.
+	    	value = value - (aDeals * aDiscount) - (bDeals * bDiscount);
+    	}
     	return value;
     }
 }
