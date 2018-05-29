@@ -70,7 +70,7 @@ public class CheckoutSolution {
 
 			if (value >= 0) // check for non-negative value, applying discounts if so.
 			{
-				int aCount = productCount.get("A").intValue();
+				int aReduction = this.multiDeal("A", 3, 130, 5, 200);
 				int bCount = productCount.get("B").intValue();
 				int eCount = productCount.get("E").intValue();
 				int fCount = productCount.get("F").intValue();
@@ -103,7 +103,7 @@ public class CheckoutSolution {
 						- (eDeals * eDiscount)   	// apply e discount.
 						- (fDeals * fDiscount)   	// apply f discount.
 						- (h10Deals * h10Discount) 	// better H deal for customer.
-						- (h5Deals * h5Discount)   	// pick up any remaining 5 piece deals.
+						- (h5Deals * h5Discount);   	// pick up any remaining 5 piece deals.
 			}
 		}
 		return value;
@@ -114,25 +114,29 @@ public class CheckoutSolution {
 	 * 
 	 * @param product - the product key, "A", "B", etc ...
 	 * @param loUnitCount - the low unit count for the multi deal.
-	 * @param loDiscount - the low discount for the multi deal.
-	 * @param hiUnitCount - the hi unit count fopr the multi deal.
-	 * @param hiDiscount - the hi discount for the multi deal.
+	 * @param loPrice - the low unit count price for the multi deal.
+	 * @param hiUnitCount - the hi unit count for the multi deal.
+	 * @param hiPrice - the hi unit count price for the multi deal.
 	 * @return the price reduction.
 	 */
-	final int multiDeal(final String product, final int lowUnitCount, final int lowDiscount, final int hiUnitCount, final int hiDiscount)
+	final int multiDeal(final String product, final int loUnitCount, final int loPrice, final int hiUnitCount, final int hiPrice)
 	{
 		int priceReduction = 0;
 		
-		if (productCount.containsKey(product))
+		if (this.products.containsKey(product) && this.productCount.containsKey(product))
 		{
-			int count = productCount.get(product).intValue();
+			int unitPrice = this.products.get(product).intValue();
+			int loDiscount = (loUnitCount * unitPrice) - loPrice; // calculate the lo discount
+			int hiDiscount = (hiUnitCount * unitPrice) - hiPrice; // calculate the hi discount
+			
+			int count = this.productCount.get(product).intValue();
 		
 			// work out how many deals have been claimed.
 			int hiDeals = count / hiUnitCount;
-			int loDeals = (count % hiUnitCount) / lowUnitCount;
+			int loDeals = (count % hiUnitCount) / loUnitCount;
 			
-			priceReduction = (hiDeals * hiDiscount) 	// better deal for customer.
-					+ (loDeals * lowDiscount); 			// pick up any remaining low deals.
+			priceReduction = (hiDeals * hiDiscount) 	// hi deal better deal for customer.
+					+ (loDeals * loDiscount); 		    // pick up any remaining low deals.
 		
 		}
 		
