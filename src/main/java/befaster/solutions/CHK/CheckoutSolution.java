@@ -86,7 +86,7 @@ public class CheckoutSolution {
 				int nmReduction = this.compoundDeal("M", 1, 15, "N", 3);
 				int qrReduction = this.compoundDeal("Q", 3, 80, "R", 3);
 				
-				int buyAnyX = this.buyAnyXDeal("STXYZ", 45, 3);
+				int buyAnyX = this.buyAny3Deal("STXYZ", 45);
 				
 				// update value by removing the discounts for the deals.
 				value = value
@@ -226,9 +226,18 @@ public class CheckoutSolution {
 		
 	}	
 	
-	final int buyAnyXDeal(final String validItems, final int dealPrice, final int dealCount)
+	/**
+	 * Buy any 3 Items.
+	 * Combines the most expensive items as the deal.
+	 * 
+	 * @param validItems - items to valid combine in deal.
+	 * @param dealPrice - the combined deal price.
+	 * @return - the price reduction.
+	 */
+	final int buyAny3Deal(final String validItems, final int dealPrice)
 	{
-		int priceReduction = 0; 
+		int priceReduction = 0;
+		final int dealCount = 3;
 		// need to find the items in cost order, high to low, since the deals always run in the customer's favour.
 
 		String[] prods = validItems.split("(?!^)"); // split into individual characters.
@@ -242,6 +251,7 @@ public class CheckoutSolution {
 			
 			if (this.products.containsKey(prod))
 			{
+				// make list of all the prices
 				for (int i = 0; i < pCount; i++)
 				{
 					final int unitPrice = this.products.get(prod).intValue();
@@ -253,7 +263,7 @@ public class CheckoutSolution {
 		Collections.sort(items); // order ascending
 		Collections.reverse(items); // reverse
 		
-		final int deals = items.size() / dealCount;
+		final int deals = items.size() / dealCount; // number of deals.
 		
 		int itemsValue = 0; 
 		for (int i = 0; i < deals; i++)
