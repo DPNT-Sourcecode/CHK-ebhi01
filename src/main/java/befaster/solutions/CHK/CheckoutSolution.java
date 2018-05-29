@@ -74,6 +74,8 @@ public class CheckoutSolution {
 				int hReduction = this.multiDeal("H", 5, 45, 10, 80);
 				int vReduction = this.multiDeal("V", 2, 90, 3, 130);
 				
+				int kReduction = this.singleDeal("K", 2, 150);
+				
 				int bCount = this.productCount.get("B").intValue();
 				int eCount = this.productCount.get("E").intValue();
 				int fCount = this.productCount.get("F").intValue();
@@ -94,12 +96,38 @@ public class CheckoutSolution {
 						- aReduction				// A multi deal
 						- hReduction				// H multi deal
 						- vReduction				// V multi deal
+						- kReduction				// K single deal
 						- (bDeals * bDiscount)   	// apply b discount.
 						- (eDeals * eDiscount)   	// apply e discount.
 						- (fDeals * fDiscount);   	// apply f discount.
 			}
 		}
 		return value;
+	}
+	
+	/**
+	 * Gets the BOGOF type deal price reduction.
+	 * 
+	 * @param product - the product key, "A", "B", etc ...
+	 * @param unitCount - the unit count for the deal.
+	 * @return the price reduction.
+	 */
+	final int bogofTypeDeal(final String product, final int unitCount)
+	{
+		int priceReduction = 0;
+		
+		if (this.products.containsKey(product) && this.productCount.containsKey(product))
+		{
+			int unitPrice = this.products.get(product).intValue();
+			int discount = unitPrice; // calculate the discount
+
+			int count = this.productCount.get(product).intValue();
+			int deals = count / (unitCount + 1);
+			
+			priceReduction = (deals * discount);
+		}
+		
+		return priceReduction;
 	}
 	
 	/**
@@ -127,7 +155,6 @@ public class CheckoutSolution {
 		}
 		
 		return priceReduction;
-		
 	}
 	
 	/**
