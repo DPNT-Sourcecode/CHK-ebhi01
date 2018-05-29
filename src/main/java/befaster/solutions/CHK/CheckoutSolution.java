@@ -82,7 +82,7 @@ public class CheckoutSolution {
 				int fReduction = this.bogofTypeDeal("F", 2);
 				int uReduction = this.bogofTypeDeal("U", 3);
 				
-				int beReduction = this.compoundDeal("B", 2, 45, "F", 2);
+				int beReduction = this.compoundDeal("B", 2, 45, "E", 2);
 				int nmReduction = this.compoundDeal("M", 1, 15, "N", 3);
 				int qrReduction = this.compoundDeal("Q", 3, 80, "R", 3);
 				
