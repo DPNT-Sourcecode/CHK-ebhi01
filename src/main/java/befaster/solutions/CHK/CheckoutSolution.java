@@ -232,12 +232,18 @@ public class CheckoutSolution {
 
 		String[] prods = validItems.split("(?!^)"); // split into individual characters.
 
-		final ArrayList<Integer> counts = new ArrayList<Integer>(0);
-
+		final ArrayList<Integer> items = new ArrayList<Integer>(0);
+		
 		// check each string token
 		for (String prod : prods)
 		{
 			int pCount = this.productCount.containsKey(prod) ? this.productCount.get(prod).intValue() : 0;
+			 
+			if (this.products.containsKey(prod))
+			{
+				final int unitPrice = this.products.get(prod).intValue();
+				items.add(new Integer(unitPrice))
+			}
 		}
 		
 		return priceReduction;
