@@ -1,6 +1,6 @@
 package befaster.solutions.CHK;
 
-import java.util.Collections;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class CheckoutSolution {
@@ -225,17 +225,22 @@ public class CheckoutSolution {
 		
 	}	
 	
-	final int buyAny3(final String validItems)
+	final int buyAny3(final String validItems, final int dealPrice)
 	{
+		int priceReduction = 0; 
 		// need to find the items in cost order, high to low, since the deals always run in the customer's favour.
 
-		String[] tokens = validItems.split("(?!^)"); // split into individual characters.
+		String[] prods = validItems.split("(?!^)"); // split into individual characters.
+
+		final ArrayList<Integer> counts = new ArrayList<Integer>(0);
 
 		// check each string token
-		for (String str : tokens)
+		for (String prod : prods)
 		{
-		
+			int pCount = this.productCount.containsKey(prod) ? this.productCount.get(prod).intValue() : 0;
 		}
+		
+		return priceReduction;
 	}
 	
 }
