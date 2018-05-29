@@ -51,7 +51,8 @@ public class CheckoutSolution {
 				// work out how many deals have been claimed.
 				int a5Deals = aCount / 5;
 				int a3Deals = (aCount % 5) / 3;
-				int bDeals = bCount / 2;
+				int eDeals = eCount / 2;
+				int bDeals = (bCount - eCount) / 2;
 
 				// update value by removing the discounts for the deals.
 				value = value
