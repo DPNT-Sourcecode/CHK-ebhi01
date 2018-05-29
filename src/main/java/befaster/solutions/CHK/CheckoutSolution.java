@@ -80,8 +80,8 @@ public class CheckoutSolution {
 				int fReduction = this.bogofTypeDeal("F", 2);
 				int uReduction = this.bogofTypeDeal("U", 3);
 				
-				int beReduction = this.compoundDeal("B", 2, 45, "E", 2);
-				int mnReduction = this.compoundDeal("M", 1, 15, "N", 3);
+				int beReduction = this.compoundDeal("B", 2, 45, "F", 2);
+				int nmReduction = this.compoundDeal("M", 1, 15, "N", 3);
 				int qrReduction = this.compoundDeal("Q", 3, 80, "R", 3);
 				
 				// update value by removing the discounts for the deals.
@@ -94,7 +94,7 @@ public class CheckoutSolution {
 						- fReduction				// F bogof type deal
 						- uReduction				// U bogof type deal
 						- beReduction   			// apply b & e discount.
-						- mnReduction   			// apply m & n discount.
+						- nmReduction   			// apply n & m discount.
 						- qrReduction;   			// apply q & r discount.
 			}
 		}
@@ -199,48 +199,23 @@ public class CheckoutSolution {
 	 */
 	final int compoundDeal(final String p1, final int p1UnitCount, final int p1DealPrice,
 			final String p2, final int p2UnitCount)
-	{
-//		// dependent deal 1
-//		int bCount = this.productCount.containsKey("B") ? this.productCount.get("B").intValue() : 0;
-//		int eCount = this.productCount.containsKey("E") ? this.productCount.get("E").intValue() : 0;
-//		
-//		int bDiscount = 15; // (2 * 30) - 45
-//		int eDiscount = 30; // one B.
-//		
-//		// work out how many deals have been claimed.
-//		int eDealsPotential = eCount / 2;
-//		int eDeals = (bCount >= eDealsPotential) ? eDealsPotential : 0;
-//
-//		int bDeals = (bCount - eDeals) / 2;
-		
-		
+	{	
 		int priceReduction = 0;
-		System.out.println("P1/P2: "  + p1 + " " + p2);
 		int p1Count = this.productCount.containsKey(p1) ? this.productCount.get(p1).intValue() : 0;
 		int p2Count = this.productCount.containsKey(p2) ? this.productCount.get(p2).intValue() : 0;
-		
-		System.out.println("P1/2 count : "  + p1Count + " " + p2Count);
 		
 		int p1UnitPrice = this.products.get(p1).intValue();
 		int p1Discount = (p1UnitCount * p1UnitPrice) - p1DealPrice; // calculate the discount
 
 		int p2Discount = p1UnitPrice; // calculate the discount
 
-		
-		System.out.println("P1/2 discount : "  + p1Discount + " " + p2Discount);
-		
-		
 		// work out how many deals have been claimed.
 		int p2DealsPotential = p2Count / p2UnitCount;
 		int p2Deals = (p1Count >= p2DealsPotential) ? p2DealsPotential : 0;
 
 		int p1Deals = (p1Count - p2Deals) / p2UnitCount;
 		
-		System.out.println("P1/2 deals : "  + p1Deals + " " + p2Deals);
-		
 		priceReduction = (p1Deals * p1Discount) + (p2Deals * p2Discount);		
-		
-		System.out.println("priceReduction : "  + priceReduction);
 		
 		return priceReduction;
 		
