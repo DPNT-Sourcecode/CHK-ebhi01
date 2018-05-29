@@ -25,7 +25,7 @@ public class CheckoutSolution {
 		this.products.put("H", new Integer(10));
 		this.products.put("I", new Integer(35));
 		this.products.put("J", new Integer(60));
-		this.products.put("K", new Integer(80));
+		this.products.put("K", new Integer(70));
 		this.products.put("L", new Integer(90));
 		this.products.put("M", new Integer(15));
 		this.products.put("N", new Integer(40));
@@ -33,14 +33,14 @@ public class CheckoutSolution {
 		this.products.put("P", new Integer(50));
 		this.products.put("Q", new Integer(30));
 		this.products.put("R", new Integer(50));
-		this.products.put("S", new Integer(30));
+		this.products.put("S", new Integer(20));
 		this.products.put("T", new Integer(20));
 		this.products.put("U", new Integer(40));
 		this.products.put("V", new Integer(50));
 		this.products.put("W", new Integer(20));
-		this.products.put("X", new Integer(90));
-		this.products.put("Y", new Integer(10));
-		this.products.put("Z", new Integer(50));
+		this.products.put("X", new Integer(17));
+		this.products.put("Y", new Integer(20));
+		this.products.put("Z", new Integer(21));
 		
 		// assumes a basic string input.
 		int value = 0;
@@ -190,12 +190,12 @@ public class CheckoutSolution {
 	
 	/**
 	 * 
-	 * @param p1
-	 * @param p1UnitCount
-	 * @param p1DealPrice
-	 * @param p2
-	 * @param p2UnitCount
-	 * @return
+	 * @param p1 - the product key, "A", "B", etc ...
+	 * @param p1UnitCount - the unit count for the deal.
+	 * @param p1DealPrice - deal price.
+	 * @param p2 - the product key, "A", "B", etc ...
+	 * @param p2UnitCount -  the unit count for the deal.
+	 * @return the price reduction.
 	 */
 	final int compoundDeal(final String p1, final int p1UnitCount, final int p1DealPrice,
 			final String p2, final int p2UnitCount)
@@ -219,5 +219,21 @@ public class CheckoutSolution {
 		
 		return priceReduction;
 		
-	}		
+	}	
+	
+	/**
+	 * 
+	 * @param p1
+	 * @param p1UnitCount
+	 * @param p1DealPrice
+	 * @param p2
+	 * @param p2UnitCount
+	 * @return
+	 */
+	final int buyAny3(final String p1, final int p1UnitCount, final int p1DealPrice,
+			final String p2, final int p2UnitCount)
+	{
+		
+	}
+	}
 }
