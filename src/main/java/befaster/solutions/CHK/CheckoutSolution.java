@@ -22,6 +22,7 @@ public class CheckoutSolution {
 			int a3Discount = 20; // (3 * 50) - 130.
 			int a5Discount = 50; // (5 * 50) - 200.
 			int bDiscount = 15; // (2 * 30) - 45
+			int eDiscount = 30; // one B.
 
 			// check each string token
 			for (String str : tokens) {
@@ -56,7 +57,8 @@ public class CheckoutSolution {
 				value = value
 						- (a5Deals * a5Discount) // better deal for customer.
 						- (a3Deals * a3Discount) // pick up any remaining 3 piece deals.
-						- (bDeals * bDiscount);  // apply b discount.
+						- (bDeals * bDiscount)   // apply b discount.
+						- (eDeals * eDiscount);  // apply e discount.
 			}
 		}
 		return value;
