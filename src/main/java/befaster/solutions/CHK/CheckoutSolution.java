@@ -109,9 +109,34 @@ public class CheckoutSolution {
 		return value;
 	}
 	
-	final int calculatePrice(String product, int unitPrice, int unitCount, int discount)
+	/**
+	 * Gets the multi deal price reduction.
+	 * 
+	 * @param product - the product key, "A", "B", etc ...
+	 * @param loUnitCount - the low unit count for the multi deal.
+	 * @param loDiscount - the low discount for the multi deal.
+	 * @param hiUnitCount - the hi unit count fopr the multi deal.
+	 * @param hiDiscount - the hi discount for the multi deal.
+	 * @return the price reduction.
+	 */
+	final int multiDeal(final String product, final int lowUnitCount, final int lowDiscount, final int hiUnitCount, final int hiDiscount)
 	{
-		int aCount = productCount.get(product).intValue();
+		int priceReduction = 0;
+		
+		if (productCount.containsKey(product))
+		{
+			int count = productCount.get(product).intValue();
+		
+			// work out how many deals have been claimed.
+			int hiDeals = count / hiUnitCount;
+			int loDeals = (count % hiUnitCount) / lowUnitCount;
+			
+			priceReduction = (hiDeals * hiDiscount) 	// better deal for customer.
+					+ (loDeals * lowDiscount); 			// pick up any remaining low deals.
+		
+		}
+		
+		return priceReduction;
 		
 	}
 	
