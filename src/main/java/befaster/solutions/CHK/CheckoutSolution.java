@@ -78,36 +78,11 @@ public class CheckoutSolution {
 				int pReduction = this.singleDeal("P", 5, 200);
 				
 				int fReduction = this.bogofTypeDeal("F", 2);
-				//int nReduction = this.bogofTypeDeal("N", 3);
 				int uReduction = this.bogofTypeDeal("U", 3);
 				
-//				// dependent deal 1
-//				int bCount = this.productCount.containsKey("B") ? this.productCount.get("B").intValue() : 0;
-//				int eCount = this.productCount.containsKey("E") ? this.productCount.get("E").intValue() : 0;
-//				
-//				int bDiscount = 15; // (2 * 30) - 45
-//				int eDiscount = 30; // one B.
-//				
-//				// work out how many deals have been claimed.
-//				int eDealsPotential = eCount / 2;
-//				int eDeals = (bCount >= eDealsPotential) ? eDealsPotential : 0;
-//
-//				int bDeals = (bCount - eDeals) / 2;
-//				
-//				// dependent deal 2
-//				int qCount = this.productCount.containsKey("Q") ? this.productCount.get("Q").intValue() : 0;
-//				int rCount = this.productCount.containsKey("R") ? this.productCount.get("R").intValue() : 0;
-//
-//				int qDiscount = 10; // (3 * 30) - 80
-//				int rDiscount = 30; // one Q.
-//				
-//				// work out how many deals have been claimed.
-//				int rDealsPotential = rCount / 3;
-//				int rDeals = (qCount >= rDealsPotential) ? rDealsPotential : 0;
-//
-//				int qDeals = (qCount - eDeals) / 3;
-
 				int beReduction = this.compoundDeal("B", 2, 45, "F", 2);
+				int nmReduction = this.compoundDeal("M", 1, 15, "N", 3);
+				int qrReduction = this.compoundDeal("Q", 3, 80, "R", 3);
 				
 				// update value by removing the discounts for the deals.
 				value = value
@@ -117,14 +92,10 @@ public class CheckoutSolution {
 						- kReduction				// K single deal
 						- pReduction				// P single deal
 						- fReduction				// F bogof type deal
-						//- nReduction				// N bogof type deal
 						- uReduction				// U bogof type deal
 						- beReduction   			// apply b & e discount.
 						- nmReduction   			// apply n & m discount.
-//						- (eDeals * eDiscount)   	// apply e discount.
-//						- (qDeals * qDiscount)   	// apply q discount.
-//						- (rDeals * rDiscount);   	// apply r discount.
-						;
+						- qrReduction;   			// apply q & r discount.
 			}
 		}
 		return value;
@@ -218,6 +189,7 @@ public class CheckoutSolution {
 	}
 	
 	/**
+	 * Calculates a compound deal reduction.
 	 * @param p1
 	 * @param p1UnitCount
 	 * @param p1DealPrice
