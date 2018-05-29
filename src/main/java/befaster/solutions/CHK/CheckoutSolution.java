@@ -51,15 +51,15 @@ public class CheckoutSolution {
 			// check each string token
 			for (String str : tokens)
 			{
-				if (products.containsKey(str))
+				if (this.products.containsKey(str))
 				{
-					value += products.get(str).intValue();
+					value += this.products.get(str).intValue();
 					int currentCount = 0;
-					if (productCount.containsKey(str))
+					if (this.productCount.containsKey(str))
 					{
-						currentCount = productCount.get(str).intValue();
+						currentCount = this.productCount.get(str).intValue();
 					}
-					productCount.put(str, new Integer(++currentCount));
+					this.productCount.put(str, new Integer(++currentCount));
 				} 
 				else
 				{
@@ -74,9 +74,9 @@ public class CheckoutSolution {
 				int hReduction = this.multiDeal("H", 5, 45, 10, 80);
 				int vReduction = this.multiDeal("V", 2, 90, 3, 130);
 				
-				int bCount = productCount.get("B").intValue();
-				int eCount = productCount.get("E").intValue();
-				int fCount = productCount.get("F").intValue();
+				int bCount = this.productCount.get("B").intValue();
+				int eCount = this.productCount.get("E").intValue();
+				int fCount = this.productCount.get("F").intValue();
 				
 				int bDiscount = 15; // (2 * 30) - 45
 				int eDiscount = 30; // one B.
