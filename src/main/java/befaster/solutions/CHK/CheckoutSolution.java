@@ -49,12 +49,15 @@ public class CheckoutSolution {
 			if (value >= 0) // check for non-negative value, applying discounts if so.
 			{
 				// work out how many deals have been claimed.
-				int a3Deals = aCount / 3;
 				int a5Deals = aCount / 5;
+				int a3Deals = (aCount % 5) / 3;
 				int bDeals = bCount / 2;
 
 				// update value by removing the discounts for the deals.
-				value = value - (a3Deals * a3Discount) - (bDeals * bDiscount);
+				value = value
+						- (a5Deals * a5Discount) // better deal for customer.
+						- (a3Deals * a3Discount) // pick up any remaining 3 piece deals.
+						- (bDeals * bDiscount);  // apply b discount.
 			}
 		}
 		return value;
