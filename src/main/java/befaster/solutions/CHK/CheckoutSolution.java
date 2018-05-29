@@ -15,14 +15,17 @@ public class CheckoutSolution {
 			int c = 20;
 			int d = 15;
 			int e = 40;
+			int f = 10;
 
 			int aCount = 0;
 			int bCount = 0;
 			int eCount = 0;
+			int fCount = 0;
 			int a3Discount = 20; // (3 * 50) - 130.
 			int a5Discount = 50; // (5 * 50) - 200.
 			int bDiscount = 15; // (2 * 30) - 45
 			int eDiscount = 30; // one B.
+			int fDiscount = 10; // one F.
 
 			// check each string token
 			for (String str : tokens) {
@@ -39,6 +42,9 @@ public class CheckoutSolution {
 				} else if (str.equals("E")) {
 					value += e;
 					eCount++;
+				} else if (str.equals("F")) {
+					value += f;
+					fCount++;
 				} else {
 					value = -1; // erroneous input, drop out of loop and method with -1.
 					break;
@@ -54,13 +60,15 @@ public class CheckoutSolution {
 				int eDeals = (bCount >= eDealsPotential) ? eDealsPotential : 0;
 	
 				int bDeals = (bCount - eDeals) / 2;
-
+				int fDeals = (fCount) / 3;
+				
 				// update value by removing the discounts for the deals.
 				value = value
 						- (a5Deals * a5Discount) // better deal for customer.
 						- (a3Deals * a3Discount) // pick up any remaining 3 piece deals.
 						- (bDeals * bDiscount)   // apply b discount.
-						- (eDeals * eDiscount);  // apply e discount.
+						- (eDeals * eDiscount)   // apply e discount.
+						- (fDeals * fDiscount);  // apply f discount.
 			}
 		}
 		return value;
