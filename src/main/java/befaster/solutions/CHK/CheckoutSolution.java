@@ -1,6 +1,7 @@
 package befaster.solutions.CHK;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 
 public class CheckoutSolution {
@@ -85,7 +86,7 @@ public class CheckoutSolution {
 				int nmReduction = this.compoundDeal("M", 1, 15, "N", 3);
 				int qrReduction = this.compoundDeal("Q", 3, 80, "R", 3);
 				
-				int buyAnyX = this.buyAny3("STXYZ", 45);
+				int buyAnyX = this.buyAnyXDeal("STXYZ", 45, 3);
 				
 				// update value by removing the discounts for the deals.
 				value = value
@@ -99,7 +100,7 @@ public class CheckoutSolution {
 						- beReduction   			// apply b & e discount.
 						- nmReduction   			// apply n & m discount.
 						- qrReduction   			// apply q & r discount.
-						- buyAnyX;			   		// apply q & r discount.
+						- buyAnyX;			   		// buyAny3 discount.
 			}
 		}
 		return value;
@@ -225,7 +226,7 @@ public class CheckoutSolution {
 		
 	}	
 	
-	final int buyAny3(final String validItems, final int dealPrice)
+	final int buyAnyXDeal(final String validItems, final int dealPrice, final int dealCount)
 	{
 		int priceReduction = 0; 
 		// need to find the items in cost order, high to low, since the deals always run in the customer's favour.
@@ -238,13 +239,31 @@ public class CheckoutSolution {
 		for (String prod : prods)
 		{
 			int pCount = this.productCount.containsKey(prod) ? this.productCount.get(prod).intValue() : 0;
-			 
+			
 			if (this.products.containsKey(prod))
 			{
-				final int unitPrice = this.products.get(prod).intValue();
-				items.add(new Integer(unitPrice))
+				for (int i = 0; i < pCount; i++)
+				{
+					final int unitPrice = this.products.get(prod).intValue();
+					items.add(new Integer(unitPrice));
+				}
 			}
+		}		
+		
+		Collections.sort(items); // order ascending
+		Collections.reverse(items); // reverse
+		
+		final int deals = items.size() / dealCount;
+		
+		int itemsValue = 0; 
+		for (int i = 0; i < deals; i++)
+		{
+			itemsValue += items.get(i * dealCount);
+			itemsValue += items.get(i * dealCount + 1);
+			itemsValue += items.get(i * dealCount + 2);
 		}
+		
+		priceReduction = itemsValue - (deals * dealPrice);
 		
 		return priceReduction;
 	}
