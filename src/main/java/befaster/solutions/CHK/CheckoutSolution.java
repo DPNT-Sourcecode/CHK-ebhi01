@@ -74,7 +74,7 @@ public class CheckoutSolution {
 				int hReduction = this.multiDeal("H", 5, 45, 10, 80);
 				int vReduction = this.multiDeal("V", 2, 90, 3, 130);
 				
-				int kReduction = this.singleDeal("K", 2, 150);
+				int kReduction = this.singleDeal("K", 2, 120);
 				int pReduction = this.singleDeal("P", 5, 200);
 				
 				int fReduction = this.bogofTypeDeal("F", 2);
