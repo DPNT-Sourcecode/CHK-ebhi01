@@ -40,11 +40,6 @@ public class CheckoutSolution {
 			products.put("Z", new Integer(50));
 
 			final HashMap<String, Integer> productCount = new HashMap<String, Integer>(0);
-			int a3Discount = 20; // (3 * 50) - 130.
-			int a5Discount = 50; // (5 * 50) - 200.
-			int bDiscount = 15; // (2 * 30) - 45
-			int eDiscount = 30; // one B.
-			int fDiscount = 10; // one F.
 
 			// check each string token
 			for (String str : tokens)
@@ -68,6 +63,17 @@ public class CheckoutSolution {
 
 			if (value >= 0) // check for non-negative value, applying discounts if so.
 			{
+				int aCount = productCount.get("A").intValue();
+				int bCount = productCount.get("B").intValue();
+				int eCount = productCount.get("E").intValue();
+				int fCount = productCount.get("F").intValue();
+				
+				int a3Discount = 20; // (3 * 50) - 130.
+				int a5Discount = 50; // (5 * 50) - 200.
+				int bDiscount = 15; // (2 * 30) - 45
+				int eDiscount = 30; // one B.
+				int fDiscount = 10; // one F.
+				
 				// work out how many deals have been claimed.
 				int a5Deals = aCount / 5;
 				int a3Deals = (aCount % 5) / 3;
