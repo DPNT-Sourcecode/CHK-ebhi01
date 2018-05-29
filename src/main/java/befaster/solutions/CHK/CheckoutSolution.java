@@ -95,9 +95,9 @@ public class CheckoutSolution {
 				int bDeals = (bCount - eDeals) / 2;
 				
 				// dependent deal 2
-				int qCount = this.productCount.get("Q").intValue();
-				int rCount = this.productCount.get("R").intValue();
-				
+				int qCount = this.productCount.containsKey("Q") ? this.productCount.get("Q").intValue() : 0;
+				int rCount = this.productCount.containsKey("R") ? this.productCount.get("R").intValue() : 0;
+
 				int qDiscount = 10; // (3 * 30) - 80
 				int rDiscount = 30; // one Q.
 				
@@ -212,55 +212,5 @@ public class CheckoutSolution {
 		return priceReduction;
 		
 	}
-	
-	/**
-	 * Gets the multi deal price reduction.
-	 * 
-	 * @param product - the product key, "A", "B", etc ...
-	 * @param loUnitCount - the low unit count for the multi deal.
-	 * @param loPrice - the low unit count price for the multi deal.
-	 * @param hiUnitCount - the hi unit count for the multi deal.
-	 * @param hiPrice - the hi unit count price for the multi deal.
-	 * @return the price reduction.
-	 */
-	final int compoundDeal(final String product1, final String product2, final int loUnitCount, final int loPrice, final int hiUnitCount, final int hiPrice)
-	{
 		
-			
-		int bCount = this.productCount.get("B").intValue();
-		int eCount = this.productCount.get("E").intValue();
-		
-		int bDiscount = 15; // (2 * 30) - 45
-		int eDiscount = 30; // one B.
-		
-		// work out how many deals have been claimed.
-		int eDealsPotential = eCount / 2;
-		int eDeals = (bCount >= eDealsPotential) ? eDealsPotential : 0;
-
-		int bDeals = (bCount - eDeals) / 2;
-		
-		
-		
-		int priceReduction = 0;
-		
-		if (this.products.containsKey(product) && this.productCount.containsKey(product))
-		{
-			int unitPrice = this.products.get(product).intValue();
-			int loDiscount = (loUnitCount * unitPrice) - loPrice; // calculate the lo discount
-			int hiDiscount = (hiUnitCount * unitPrice) - hiPrice; // calculate the hi discount
-			
-			int count = this.productCount.get(product).intValue();
-		
-			// work out how many deals have been claimed.
-			int hiDeals = count / hiUnitCount;
-			int loDeals = (count % hiUnitCount) / loUnitCount;
-			
-			priceReduction = (hiDeals * hiDiscount) 	// hi deal better deal for customer.
-					+ (loDeals * loDiscount); 		    // pick up any remaining low deals.
-		
-		}
-		
-		return priceReduction;
-		
-	}	
 }
