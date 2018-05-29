@@ -67,6 +67,7 @@ public class CheckoutSolution {
 				int bCount = productCount.get("B").intValue();
 				int eCount = productCount.get("E").intValue();
 				int fCount = productCount.get("F").intValue();
+				int hCount = productCount.get("H").intValue();
 				
 				int a3Discount = 20; // (3 * 50) - 130.
 				int a5Discount = 50; // (5 * 50) - 200.
@@ -79,6 +80,8 @@ public class CheckoutSolution {
 				int a3Deals = (aCount % 5) / 3;
 				int eDealsPotential = eCount / 2;
 				int eDeals = (bCount >= eDealsPotential) ? eDealsPotential : 0;
+				int h10Deals = aCount / 10;
+				int h5Deals = (aCount % 10) / 5;
 
 				int bDeals = (bCount - eDeals) / 2;
 				int fDeals = (fCount) / 3;
