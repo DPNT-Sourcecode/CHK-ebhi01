@@ -212,5 +212,52 @@ public class CheckoutSolution {
 		return priceReduction;
 		
 	}
+	
+	final int compoundDeal(final String p1, final int p1UnitCount, final int p1DealPrice,
+			final String p2, final int p2UnitCount, final int p2DealPrice)
+	{
 		
+//		// dependent deal 1
+//		int bCount = this.productCount.containsKey("B") ? this.productCount.get("B").intValue() : 0;
+//		int eCount = this.productCount.containsKey("E") ? this.productCount.get("E").intValue() : 0;
+//		
+//		int bDiscount = 15; // (2 * 30) - 45
+//		int eDiscount = 30; // one B.
+//		
+//		// work out how many deals have been claimed.
+//		int eDealsPotential = eCount / 2;
+//		int eDeals = (bCount >= eDealsPotential) ? eDealsPotential : 0;
+//
+//		int bDeals = (bCount - eDeals) / 2;
+		
+		
+		int priceReduction = 0;
+
+		int bCount = this.productCount.containsKey(p1) ? this.productCount.get(p1).intValue() : 0;
+		int eCount = this.productCount.containsKey(p2) ? this.productCount.get(p2).intValue() : 0;
+		
+		int p1UnitPrice = this.products.get(p1).intValue();
+		int p1Discount = (p1UnitCount * p1UnitPrice) - p1DealPrice; // calculate the discount
+		
+		int p1Count = this.productCount.get(p1).intValue();
+		int p1Deals = p1Count / p1UnitCount;
+
+		int p2UnitPrice = this.products.get(p2).intValue();
+		int p2Discount = (p2UnitCount * p2UnitPrice) - p2DealPrice; // calculate the discount
+		
+		int p2Count = this.productCount.get(p2).intValue();
+		int p2Deals = p2Count / p2UnitCount;
+		
+		// work out how many deals have been claimed.
+		int p2DealsPotential = p2Count / p2UnitCount;
+		int p2Deals = (p1Count >= p2DealsPotential) ? p2DealsPotential : 0;
+
+		int p1Deals = (p1Count - p2Deals) / 2;
+		
+		
+		priceReduction = (p1Deals * p1Discount) + (p2Deals * p2Discount);		
+		
+		return priceReduction;
+		
+	}		
 }
