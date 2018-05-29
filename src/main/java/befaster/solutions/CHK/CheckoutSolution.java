@@ -215,7 +215,7 @@ public class CheckoutSolution {
 		
 		
 		int priceReduction = 0;
-
+		System.out.println("P1/P2: "  + p1 + " " + p2);
 		int p1Count = this.productCount.containsKey(p1) ? this.productCount.get(p1).intValue() : 0;
 		int p2Count = this.productCount.containsKey(p2) ? this.productCount.get(p2).intValue() : 0;
 		
