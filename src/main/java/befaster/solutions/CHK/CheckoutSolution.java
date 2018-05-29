@@ -7,7 +7,7 @@ public class CheckoutSolution {
         
     	// assumes a basic string input.
     	int value = 0;
-    	String[] tokens = skus.split("?!^)");
+    	String[] tokens = skus.split("(?!^)");
     	
     	// sku prices
     	int a = 50;
